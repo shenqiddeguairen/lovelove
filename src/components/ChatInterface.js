@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { SendOutlined, SmileOutlined, LoadingOutlined } from '@ant-design/icons';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { SmileOutlined, LoadingOutlined } from '@ant-design/icons';
 import '../styles/ChatInterface.css';
 
 const ChatInterface = ({ cardId, onAIResponseUpdate }) => {
@@ -20,9 +20,7 @@ const ChatInterface = ({ cardId, onAIResponseUpdate }) => {
       lastUpdated: Date.now()
     };
   });
-  const [conflict, setConflict] = useState(null);
   const [accumulatedText, setAccumulatedText] = useState('');
-  const [previousText, setPreviousText] = useState('');
   const [aiMessageId, setAiMessageId] = useState(null);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
@@ -31,7 +29,7 @@ const ChatInterface = ({ cardId, onAIResponseUpdate }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = useCallback(async () => {
     if (!inputText.trim()) return;
 
     const userMessage = {
@@ -104,19 +102,19 @@ const ChatInterface = ({ cardId, onAIResponseUpdate }) => {
       }
     } catch (error) {
       console.error('发送消息失败:', error);
-      const aiMessage = {
+      const errorMessage = {
         id: Date.now(),
         text: `抱歉，${error.message || '发送消息时出现错误'}`,
         sender: 'ai'
       };
-      setMessages(prev => [...prev, aiMessage]);
+      setMessages(prev => [...prev, errorMessage]);
       if (onAIResponseUpdate) {
-        onAIResponseUpdate(aiMessage.text);
+        onAIResponseUpdate(errorMessage.text);
       }
     } finally {
       setIsTyping(false);
     }
-  };
+  }, [inputText, chatContext.history, onAIResponseUpdate]);
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -143,7 +141,7 @@ const ChatInterface = ({ cardId, onAIResponseUpdate }) => {
       localStorage.removeItem(`conflict_${cardId}`);
       setHasAutoSent(false);
     }
-  }, [inputText, hasAutoSent, cardId]);
+  }, [inputText, hasAutoSent, cardId, handleSendMessage]);
 
   // 当消息更新时保存到localStorage
   useEffect(() => {
@@ -166,25 +164,19 @@ const ChatInterface = ({ cardId, onAIResponseUpdate }) => {
   // 监听accumulatedText的变化，更新消息显示
   useEffect(() => {
     if (aiMessageId && accumulatedText) {
-      setPreviousText(accumulatedText);
       setMessages(prev => {
-        const aiMessage = {
-          id: aiMessageId,
-          text: previousText,
-          sender: 'ai'
-        };
         if (onAIResponseUpdate) {
-          onAIResponseUpdate(previousText);
+          onAIResponseUpdate(accumulatedText);
         }
         const newMessages = prev.filter(msg => msg.id !== aiMessageId);
         return [...newMessages, {
           id: aiMessageId,
-          text: previousText, // 使用上一次的文本，忽略最后一次输出
+          text: accumulatedText,
           sender: 'ai'
         }];
       });
     }
-  }, [accumulatedText, aiMessageId]);
+  }, [accumulatedText, aiMessageId, onAIResponseUpdate]);
 
   useEffect(() => {
     scrollToBottom();
