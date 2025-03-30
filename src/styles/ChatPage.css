@@ -1,0 +1,14 @@
+.chat-page {
+  height: 100vh;
+  background-color: var(--chat-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .chat-page {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,417 @@
+.moments-page {
+  padding: 20px;
+}
+
+.moment-form-card {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.moment-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #ff7b89, #8a6ca4);
+}
+
+.moment-form-card h3 {
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+  color: #ff7b89;
+}
+
+.moment-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  padding-top: 40px;
+  margin-bottom: 20px;
+}
+
+.moment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #ff7b89, #8a6ca4);
+}
+
+.moment-card::after {
+  content: '❤';
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #ff7b89;
+  font-size: 18px;
+  opacity: 0.5;
+}
+
+.moment-content {
+  flex: 1;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  margin-top: 30px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.moment-content .file-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.moment-content .file-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-style: normal;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.moment-content .file-link:hover {
+  background-color: #e8e8e8;
+  transform: translateY(-2px);
+}
+
+.moment-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 14px;
+  border-top: 1px dashed #eee;
+  padding-top: 15px;
+}
+
+.moment-date, .moment-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.moment-tag {
+  background-color: rgba(138, 108, 164, 0.1);
+  color: #8a6ca4;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.moments-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* 心动类型选择器 */
+.moment-type-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.type-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #666;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.type-btn:hover {
+  background-color: rgba(255, 123, 137, 0.05);
+  color: #ff7b89;
+}
+
+.type-btn.active {
+  background-color: #ff7b89;
+  color: white;
+  border-color: #ff7b89;
+}
+
+/* 录制相关样式 */
+.recording-container {
+  margin-bottom: 20px;
+}
+
+.recording-feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 123, 137, 0.05);
+  border-radius: 12px;
+  border: 1px dashed #ff7b89;
+}
+
+.recording-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  animation: pulse 1s infinite;
+}
+
+.recording-indicator.audio {
+  background-color: #ff7b89;
+}
+
+.recording-indicator.video {
+  background-color: #ff4757;
+}
+
+.video-preview-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 15px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(255, 123, 137, 0.2);
+  background-color: #ffebee;
+  position: relative;
+}
+
+.video-preview-container::before {
+  content: '';
+  display: block;
+  padding-top: 75%; /* 4:3 比例 */
+}
+
+.video-preview-live {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid #ff7b89;
+  border-radius: 10px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 123, 137, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 123, 137, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 123, 137, 0);
+  }
+}
+
+.stop-recording-btn {
+  margin-top: 15px;
+  background-color: #ff4757;
+}
+
+.recorded-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.audio-preview, .video-preview {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.video-preview {
+  max-height: 300px;
+}
+
+.media-controls {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.media-control-btn {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cancel-btn {
+  background-color: #ff6b6b;
+}
+
+.save-btn {
+  background-color: #26de81;
+}
+
+/* 多媒体播放器样式 */
+.moment-media {
+  margin-bottom: 20px;
+}
+
+.audio-player, .video-player {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.video-player {
+  max-height: 200px;
+}
+
+/* 上传按钮样式 */
+.upload-container {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background-color: rgba(255, 123, 137, 0.1);
+  border: 1px dashed #ff7b89;
+  border-radius: 8px;
+  color: #ff7b89;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: rgba(255, 123, 137, 0.2);
+}
+
+.uploaded-files {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  padding: 6px 12px;
+}
+
+.file-name {
+  font-size: 14px;
+  color: #666;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delete-file-btn {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.delete-file-btn:hover {
+  color: #ff7875;
+  transform: scale(1.1);
+}
+
+.file-label {
+  font-size: 13px;
+  color: #666;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* 媒体选项样式 */
+.media-options {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.or-divider {
+  color: #999;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.media-record-btn .btn, .media-upload .btn {
+  padding: 10px 15px;
+}
+
+.moment-description {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: rgba(255, 235, 235, 0.5);
+  border-radius: 8px;
+  border-left: 3px solid #ff7b89;
+}
+
+.moment-description p {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* 响应式样式调整 */
+@media (max-width: 768px) {
+  .moment-type-selector {
+    flex-direction: column;
+  }
+  
+  .media-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .or-divider {
+    margin: 10px 0;
+  }
+}

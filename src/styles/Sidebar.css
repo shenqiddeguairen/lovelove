@@ -1,0 +1,75 @@
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background-color: white;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 0 10px var(--shadow-color);
+}
+
+.logo {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.logo h1 {
+  font-size: 28px;
+  margin: 0;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  margin-bottom: 5px;
+  border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 107, 129, 0.05);
+  color: var(--primary-color);
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+  background-color: rgba(255, 107, 129, 0.1);
+  border-left: 3px solid var(--primary-color);
+}
+
+.nav-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 14px;
+}
+
+.love-quote {
+  margin: 0;
+  color: var(--secondary-color);
+} 
