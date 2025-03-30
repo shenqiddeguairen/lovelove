@@ -399,12 +399,12 @@ const PromisesPage = () => {
         {newPromise.type === 'text' ? (
           <>
             <div className="form-group">
-              <label htmlFor="content">你的承诺</label>
+              <label htmlFor="content">你（Ta）的承诺</label>
               <textarea
                 id="content"
                 name="content"
                 className="form-control"
-                placeholder="写下你想对Ta说的承诺..."
+                placeholder="写下你想对Ta说（或Ta对你说的）的承诺..."
                 value={newPromise.content}
                 onChange={handleChange}
                 rows="3"
